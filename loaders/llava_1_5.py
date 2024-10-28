@@ -20,4 +20,5 @@ class LLaVA15ModelLoader(BaseModelLoader):
 
         processor = AutoProcessor.from_pretrained(self.model_hf_path)
         tokenizer = processor.tokenizer
+        tokenizer.add_eos_token = True
         return model, tokenizer, processor
