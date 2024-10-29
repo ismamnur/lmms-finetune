@@ -89,8 +89,13 @@ def train():
     if not training_args.train_vision_projector:
         rank0_print(f"Vision projector is freezed... including:")
         for module in vision_projector_keys:
-            rank0_print(f"\t{module}")
-            eval(f"model.{module}").requires_grad_(False)
+            # rank0_print(f"\t{module}")
+            # eval(f"model.{module}").requires_grad_(False)
+            projector_module = eval(f"model.{module}")
+            for name, param in projector_module.named_parameters():
+                if not torch.is_floating_point(param):
+                    rank0_print(f"Converting {name} in {module} to float32")
+                    param.data = param.data.float()
 
     # other components preparation (e.g., image_newline, vision_resampler)
     # we will just freeze these
