@@ -21,4 +21,9 @@ class LLaVA15ModelLoader(BaseModelLoader):
         processor = AutoProcessor.from_pretrained(self.model_hf_path)
         tokenizer = processor.tokenizer
         tokenizer.add_eos_token = True
+        # Changing started
+        tokenizer.bos_token="<s>"
+        tokenizer.eos_token="</s>"
+        tokenizer.pad_token="<pad>"
+        tokenizer.padding_side="left"
         return model, tokenizer, processor
