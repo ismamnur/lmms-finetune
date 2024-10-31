@@ -153,6 +153,11 @@ register_model(
     model_family_id="llava-1.5",
     model_hf_path="swapnil7777/llava_level_3epoch_multi_image_merged"
 )
+register_model(
+    model_id="llava_level_4epoch_multi_image_merged",
+    model_family_id="llava-1.5",
+    model_hf_path="swapnil7777/llava_level_4epoch_multi_image_merged"
+)
 
 # llava-onevision -------------------------------------------
 # register_model(
